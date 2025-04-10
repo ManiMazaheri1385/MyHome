@@ -1,17 +1,22 @@
 package db;
 
-public abstract class Device implements Cloneable{
+public abstract class Device implements Cloneable, Validator {
+
     public int id;
-    public String name;
     public Protocol protocol;
     public Status status;
-    public int value;
 
     public enum Protocol {
         WiFi, Bluetooth;
     }
     public enum Status {
         on, off;
+    }
+
+    public Device(String name, Protocol protocol) {
+        setName(name);
+        this.protocol = protocol;
+        this.status = Status.off;
     }
 
     @Override
