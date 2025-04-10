@@ -24,8 +24,8 @@ public class Database {
     }
 
     public static void remove(int id) {
-        Device entity = get(id);
-        devices.remove(entity);
+        Device device = get(id);
+        devices.remove(device);
     }
 
     public static void update(Device device) {
