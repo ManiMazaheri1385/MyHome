@@ -1,7 +1,6 @@
 package db;
 
-import db.exception.DeviceNotFoundException;
-
+import db.exception.*;
 import java.util.ArrayList;
 
 public class Database {
@@ -9,7 +8,7 @@ public class Database {
 
     private Database() {}
 
-    public static void add(Device device) {
+    public static void addDevice(Device device) {
         try {
             get(device.name);
             throw new IllegalArgumentException("duplicate device name");
