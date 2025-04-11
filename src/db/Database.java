@@ -11,7 +11,7 @@ public class Database {
     public static void addDevice(Device device) {
         try {
             get(device.name);
-            throw new IllegalArgumentException("duplicate device name");
+            throw new DuplicateDeviceException("duplicate device name");
         } catch (DeviceNotFoundException e) {
             devices.add(device.clone());
         }
