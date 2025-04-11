@@ -3,10 +3,9 @@ package devices;
 import db.Device;
 import db.Validator;
 
-public class Thermostat extends Device implements Validator {
+public class Thermostat extends Device {
 
     public int temperature;
-    public String name;
 
     public Thermostat(String name, Protocol protocol) {
         super(name, protocol);
@@ -14,18 +13,16 @@ public class Thermostat extends Device implements Validator {
     }
 
     @Override
-    public void setValue(int temperature) {
-        if (temperature < 10 || temperature > 30) {
-            throw new IllegalArgumentException("temperature must be between 10 and 30");
-        }
-        this.temperature = temperature;
+    public String information() {
+        return "thermostat: " + name + " " + status + " " + temperature + "C " + protocol;
     }
 
-    public void setName(String name) {
-        if (name == null || name.isEmpty()) {
-            throw new IllegalArgumentException("Name cannot be null or empty");
+    @Override
+    public void setValue(int temperature) {
+        if (temperature < 10 || temperature > 30) {
+            throw new IllegalArgumentException("invalid value");
         }
-        this.name = name;
+        this.temperature = temperature;
     }
 
 }
