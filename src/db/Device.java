@@ -53,7 +53,6 @@ public abstract class Device implements Cloneable, Validator {
     public Device clone() {
         try {
             Device cloned = (Device) super.clone();
-            cloned.rule = new Rule(this.rule.action, this.rule.time);
             return cloned;
         } catch (CloneNotSupportedException e) {
             System.out.println("Cloning failed!");
