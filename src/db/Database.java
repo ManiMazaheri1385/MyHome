@@ -1,35 +1,39 @@
 package db;
 
+import db.exception.DeviceNotFoundException;
+
 import java.util.ArrayList;
 
 public class Database {
-    private static int identifier = 1;
     private static ArrayList<Device> devices = new ArrayList<>();
 
     private Database() {}
 
     public static void add(Device device) {
-        device.id = identifier;
-        devices.add(device.clone());
-        identifier++;
+        try {
+            get(device.name);
+            throw new IllegalArgumentException("duplicate device name");
+        } catch (DeviceNotFoundException e) {
+            devices.add(device.clone());
+        }
     }
 
-    public static Device get(int id) {
+    public static Device get(String name) throws DeviceNotFoundException {
         for (Device device : devices) {
-            if (device.id == id) {
+            if (device.name.equals(name)) {
                 return device.clone();
             }
         }
-        return null;
+        throw new DeviceNotFoundException();
     }
 
-    public static void remove(int id) {
-        Device device = get(id);
+    public static void remove(String name) {
+        Device device = get(name);
         devices.remove(device);
     }
 
     public static void update(Device device) {
-        get(device.id);
+        get(device.name);
 
         int index = devices.indexOf(device);
         devices.set(index, device.clone());
