@@ -1,7 +1,6 @@
 package devices;
 
 import db.Device;
-import db.Validator;
 
 public class Thermostat extends Device {
 
@@ -14,7 +13,7 @@ public class Thermostat extends Device {
 
     @Override
     public String information() {
-        return "thermostat: " + name + " " + status + " " + temperature + "C " + protocol;
+        return name + " " + status + " " + temperature + "C " + protocol;
     }
 
     @Override
