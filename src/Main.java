@@ -132,7 +132,14 @@ public class Main {
 
     public static void listRules() {
         ArrayList<Device> devices = Database.getAll();
+        if (devices.isEmpty()) {
+            System.out.println();
+        }
+
         for (Device device : devices) {
+            if (device.rule == null) {
+                continue;
+            }
             System.out.println(device.name + " " + device.rule.information());
         }
     }
