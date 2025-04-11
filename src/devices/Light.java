@@ -1,7 +1,6 @@
 package devices;
 
 import db.Device;
-import db.Validator;
 
 public class Light extends Device {
 
@@ -14,7 +13,7 @@ public class Light extends Device {
 
     @Override
     public String information() {
-        return "light: " + name + " " + status + " " + brightness + "% " + protocol;
+        return name + " " + status + " " + brightness + "% " + protocol;
     }
 
     @Override
