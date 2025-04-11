@@ -2,7 +2,7 @@ package db;
 
 public abstract class Device implements Cloneable, Validator {
 
-    public int id;
+    public String name;
     public Protocol protocol;
     public Status status;
 
@@ -17,6 +17,16 @@ public abstract class Device implements Cloneable, Validator {
         setName(name);
         this.protocol = protocol;
         this.status = Status.off;
+    }
+
+    public abstract String information();
+
+    @Override
+    public void setName(String name) {
+        if (name == null || name.isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be null or empty");
+        }
+        this.name = name;
     }
 
     @Override
@@ -39,7 +49,7 @@ public abstract class Device implements Cloneable, Validator {
             return false;
         }
         Device device = (Device) object;
-        return id == device.id;
+        return  name.equals(device.name);
     }
 
 }
